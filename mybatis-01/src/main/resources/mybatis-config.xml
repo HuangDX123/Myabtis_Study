@@ -22,4 +22,5 @@
     <mappers>
         <mapper resource="com/kuang/dao/UserMapper.xml"/>
     </mappers>
+
 </configuration>
