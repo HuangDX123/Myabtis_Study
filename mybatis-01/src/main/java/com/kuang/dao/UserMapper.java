@@ -7,7 +7,9 @@ import java.util.Map;
 
 public interface UserMapper {
 
-    List<User> getUserLike(String s);
+//    List<User> getUserList(String s);
+
+
 
     //    查询全部用户
     List<User> getUserList();

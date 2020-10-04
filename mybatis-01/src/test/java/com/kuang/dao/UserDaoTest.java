@@ -15,39 +15,27 @@ public class UserDaoTest {
 //    模糊查询
 
 
-
-
-
-
-
     //查询全部数据
     @Test
     public void test() {
-
         //第一步获取sqlSession对象
         SqlSession sqlSession = MybatisUtils.getSqlSession();
 
         try {
-
             //方式一：getMapper
-            //UserDao userDao = sqlSession.getMapper(UserDao.class);
-            //List<User> userList = userDao.getUserList();
+            UserMapper userDao = sqlSession.getMapper(UserMapper.class);
+            List<User> userList = userDao.getUserList();
             //方式二：
-            List<User> userList = sqlSession.selectList("com.kuang.dao.UserDao.getUserList");
-
+            //List<User> userList = sqlSession.selectList("com.kuang.dao.UserDao.getUserList");
             for (User user : userList) {
                 System.out.println(user);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             //关闭SqlSession
             sqlSession.close();
-
         }
-
-
     }
 
     //    精确查找
@@ -100,8 +88,8 @@ public class UserDaoTest {
 
         Map<String, Object> map = new HashMap<String, Object>();
 
-        map.put("userid", 7);
-        map.put("username", "老张");
+        map.put("userid", 8);
+        map.put("username", "老王");
         map.put("userpwd", "中国");
 
 
@@ -129,10 +117,8 @@ public class UserDaoTest {
 
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
-        int res = mapper.updateUser(new User(1, "张三", "中国"));
-        mapper.updateUser(new User(2, "李四", "中国"));
-        mapper.updateUser(new User(3, "王五", "中国"));
-        mapper.updateUser(new User(4, "Brian", "US"));
+        int res = mapper.updateUser(new User(7, "张三", "德国"));
+
         if (res > 0) {
             System.out.println("修改成功！");
         } else {
@@ -151,7 +137,7 @@ public class UserDaoTest {
 
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
-        int res = mapper.deleteUserById(5);
+        int res = mapper.deleteUserById(8);
 
         if (res > 0) {
             System.out.println("删除成功！");
