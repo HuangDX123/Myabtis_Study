@@ -5,13 +5,8 @@
 <!--namespace=绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.kuang.dao.UserMapper">
 
-    <!--模糊查询-->
-    <select id="getUserLike" resultType="com.kuang.pojo.User">
-        select * from mybatis.user where  name like "%"#{value}"%"
-    </select>
-
     <!--select查询语句-->
-    <select id="getUserList" resultType="com.kuang.pojo.User">
+    <select id="getUserList" resultType="user">
         select * from mybatis.user
     </select>
 
@@ -25,18 +20,14 @@
        insert into mybatis.user (id, name, pwd) values (#{id}, #{name}, #{pwd});
     </insert>
 
-    <!--map插入数据-->
-    <insert id="addUser2" parameterType="map">
-       insert into mybatis.user (id, name, pwd) values (#{userid}, #{username}, #{userpwd});
-    </insert>
-
-
     <!--修改-->
     <update id="updateUser" parameterType="com.kuang.pojo.User">
         update mybatis.user set  name=#{name},pwd=#{pwd} where id =#{id};
     </update>
+
     <!--删除-->
     <delete id="deleteUserById" parameterType="int">
         delete from mybatis.User where id =#{id};
     </delete>
+
 </mapper>

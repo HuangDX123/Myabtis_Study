@@ -12,7 +12,22 @@ import java.util.Map;
 public class UserDaoTest {
 
 
-//    模糊查询
+    //    模糊查询
+    @Test
+    public void getUserLisk() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        List<User> userList = mapper.getUserLike("刘");
+
+        for (User user : userList) {
+            System.out.println(userList);
+        }
+        //关闭SqlSession
+        sqlSession.close();
+
+    }
 
 
     //查询全部数据

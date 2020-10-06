@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration核心配置文件-->
+<configuration>
+
+    <!--引入外部配置文件-->
+    <properties resource="db.properties">
+        <!--        <property name="username" value="root"/>-->
+        <!--        <property name="password" value="123456"/>-->
+    </properties>
+
+
+    <!--    给实体类取别名-->
+    <typeAliases>
+        <!--        <typeAlias type="com.kuang.pojo.User" alias="user"/>-->
+        <package name="com.kuang.pojo"/>
+    </typeAliases>
+
+    <!--连接数据库配置文件-->
+    <environments default="development">
+
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <!--配置多种开发环境-->
+        <environment id="test">
+            <transactionManager type="test"></transactionManager>
+            <dataSource type=""></dataSource>
+        </environment>
+
+    </environments>
+
+
+    <!--每一个Mapper.XML都需要在Mybatis核心配置文件中注册-->
+    <mappers>
+<!--        <mapper resource="com/kuang/dao/UserMapper.xml"/>-->
+        <mapper class="com.kuang.dao.UserMapper"/>
+    </mappers>
+
+
+</configuration>
